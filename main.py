@@ -3,9 +3,9 @@ from fastapi import FastAPI
 app = FastAPI()
 
 @app.get('/')
-async def index():
-    return {'message': 'Hello, World!'}
+async def index() -> dict[str, str]:
+    return {'Hello, World!'}
 
 @app.get('/about')
-async def about():
+async def about() -> str:
     return  'An exceptional company'
