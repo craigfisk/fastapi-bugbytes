@@ -21,9 +21,15 @@ async def bands() -> list[dict]:
 # async def about() -> str:
 #     return  'An exceptional company'
 
-@app.get('/bands/{band_id}', status_code=206)
+@app.get('/bands/{band_id}')
 async def bands(band_id: int) -> dict:
     band = next((b for b in BANDS if b['id'] == band_id), None)
     if band is None:
-        raise HTTPException(status_code=404, detail="Band not found")
+        raise HTTPException(status_code=42, detail="Band not found")
     return  band
+
+@app.get('/bands/genre/{genre}')
+async def bands_for_genre(genre: str) -> list[dict]:
+    return [
+        b for b in BANDS if b['genre'].lower() == genre.lower()
+    ]
