@@ -21,7 +21,7 @@ async def bands() -> list[dict]:
 # async def about() -> str:
 #     return  'An exceptional company'
 
-@app.get('/bands/{band_id}')
+@app.get('/bands/{band_id}', status_code=206)
 async def bands(band_id: int) -> dict:
     band = next((b for b in BANDS if b['id'] == band_id), None)
     if band is None:
