@@ -9,13 +9,19 @@ class GenreURLChoices(Enum):
     METAL = 'metal'
     HIP_HOP = 'hip-hop'
 
+class GenreChoices(Enum):
+    ROCK = 'Rock'
+    ELECTRONIC = 'Electronic'
+    METAL = 'Metal'
+    HIP_HOP = 'Hip-Hop'
+
 class Album(BaseModel): 
     title: str
     release_date: date
 
 class BandBase(BaseModel):
     name: str
-    genre: str
+    genre: GenreChoices
     albums: list[Album] = []   # Default is an empty list; also 'Album' is Album in BugBytes #3@14:04
 
 class BandCreate(BandBase):
@@ -24,4 +30,3 @@ class BandCreate(BandBase):
 class BandWithID(BandBase):
     id: int
 
-    
