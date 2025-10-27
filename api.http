@@ -3,17 +3,7 @@ Content-Type: application/json
 
 {
     "name": "Boards of Canada",
-    "genre": "Electronic",
-    "albums": [
-        {
-            "title": "Tomorrow's Harvest",
-            "release_date": "2013-01-01"
-        },
-        {
-            "title": "Music Has the Right to Children",
-            "release_date": "1998-04-20"
-        }
-    ]
+    "genre": "Electronic"
 }
 
 ###
