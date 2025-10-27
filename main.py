@@ -13,11 +13,12 @@ BANDS = [
 ]
 
 @app.get('/bands')
-async def bands() -> list[Band]:
-    return [
-        # list comprehension
-        Band(**b) for b in BANDS
-    ]
+async def bands(genre: GenreURLChoices | None = None) -> list[Band]:
+    if genre:
+        return [
+            Band(**b) for b in BANDS if b['genre'].lower() == genre.value
+        ]
+    return [Band(**b) for b in BANDS]
 
 # @app.get('/')
 # async def index() -> dict[str, str]:
@@ -34,8 +35,8 @@ async def band(band_id: int) -> Band:
         raise HTTPException(status_code=404, detail="Band not found")
     return  band
 
-@app.get('/bands/genre/{genre}')
-async def bands_for_genre(genre: GenreURLChoices) -> list[dict]:
-    return [
-        b for b in BANDS if b['genre'].lower() == genre.value
-    ]
+# @app.get('/bands/genre/{genre}')
+# async def bands_for_genre(genre: GenreURLChoices) -> list[dict]:
+#     return [
+#         b for b in BANDS if b['genre'].lower() == genre.value
+#     ]
