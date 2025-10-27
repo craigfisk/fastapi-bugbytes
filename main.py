@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
-from schemas import GenreURLChoices, Band
-
+from schemas import GenreURLChoices, BandBase, BandCreate, BandWithID
+# See https://github.com/tiangolo/full-stack-fastapi-postgresql/blob/master/app/schemas/user.py
+#    
 app = FastAPI()
 
 BANDS = [
@@ -16,8 +17,8 @@ BANDS = [
 async def bands(
     genre: GenreURLChoices | None = None, 
     has_albums: bool = False
-) -> list[Band]:
-    band_list = [Band(**b) for b in BANDS]
+) -> list[BandWithID]:
+    band_list = [BandWithID(**b) for b in BANDS]
 
     if genre:
         band_list = [
@@ -37,14 +38,22 @@ async def bands(
 #     return  'An exceptional company'
 
 @app.get('/bands/{band_id}')
-async def band(band_id: int) -> Band: 
-    band = next((Band(**b) for b in BANDS if b['id'] == band_id), None)
+async def band(band_id: int) -> BandWithID: 
+    band = next((BandWithID(**b) for b in BANDS if b['id'] == band_id), None)
     if band is None:
         raise HTTPException(status_code=404, detail="Band not found")
     return  band
 
-# @app.get('/bands/genre/{genre}')
-# async def bands_for_genre(genre: GenreURLChoices) -> list[dict]:
-#     return [
-#         b for b in BANDS if b['genre'].lower() == genre.value
-#     ]
+@app.get('/bands/genre/{genre}')
+async def bands_for_genre(genre: GenreURLChoices) -> list[dict]:
+    return [
+        b for b in BANDS if b['genre'].lower() == genre.value
+    ]
+
+@app.post('/bands')
+async def create_band(band_data: BandCreate) -> BandWithID:
+    id = BANDS[-1]['id'] + 1
+    band = BandWithID(id=id, **band_data.model_dump()).model_dump()
+    BANDS.append(band)
+    return band
+

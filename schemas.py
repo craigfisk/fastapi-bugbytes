@@ -13,9 +13,15 @@ class Album(BaseModel):
     title: str
     release_date: date
 
-class Band(BaseModel):
-    id: int
+class BandBase(BaseModel):
     name: str
     genre: str
     albums: list[Album] = []   # Default is an empty list; also 'Album' is Album in BugBytes #3@14:04
 
+class BandCreate(BandBase):
+    pass    
+
+class BandWithID(BandBase):
+    id: int
+
+    
