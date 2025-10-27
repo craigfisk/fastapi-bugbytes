@@ -6,7 +6,9 @@ app = FastAPI()
 BANDS = [
     {'id': 1, 'name': 'The Kinks', 'genre': 'Rock'},
     {'id': 2, 'name': 'Aphex Twin', 'genre': 'Electronic'},
-    {'id': 3, 'name': 'Black Sabbath', 'genre': 'Metal'},
+    {'id': 3, 'name': 'Black Sabbath', 'genre': 'Metal', 'albums': [
+        {'title': 'Master of Reality', 'release_date': '1971-07-21'}
+    ]},
     {'id': 4, 'name': 'Wu-Tang Clan', 'genre': 'Hip-Hop'},    
 ]
 
@@ -29,7 +31,7 @@ async def bands() -> list[Band]:
 async def band(band_id: int) -> Band: 
     band = next((Band(**b) for b in BANDS if b['id'] == band_id), None)
     if band is None:
-        raise HTTPException(status_code=42, detail="Band not found")
+        raise HTTPException(status_code=404, detail="Band not found")
     return  band
 
 @app.get('/bands/genre/{genre}')
