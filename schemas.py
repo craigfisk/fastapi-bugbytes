@@ -17,5 +17,5 @@ class Band(BaseModel):
     id: int
     name: str
     genre: str
-    albums: list['Album'] = []   # Default is an empty list; also 'Album' is Album in BugBytes #3@14:04
+    albums: list[Album] = []   # Default is an empty list; also 'Album' is Album in BugBytes #3@14:04
 
