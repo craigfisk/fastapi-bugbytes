@@ -7,8 +7,9 @@ def double(x: Annotated[int, (0,100)]) ->  int:
         hint_type, *hint_args = get_args(hint)
         low, high = hint_args[0]
         print(low, high)
-        # print(hint_type)
-        # print(hint_args)
+        
+        if not (low <= x <= high):
+            raise ValueError(f"x must be between {low} and {high}") 
     return x * 2
 
 result = double(11111)
