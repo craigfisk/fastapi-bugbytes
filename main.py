@@ -1,5 +1,6 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Path
 from schemas import GenreURLChoices, BandBase, BandCreate, BandWithID
+from typing import Annotated
 # See https://github.com/tiangolo/full-stack-fastapi-postgresql/blob/master/app/schemas/user.py
 #    
 app = FastAPI()
@@ -29,16 +30,8 @@ async def bands(
         band_list = [b for b in band_list if len(b.albums) > 0]      
     return band_list
 
-# @app.get('/')
-# async def index() -> dict[str, str]:
-#     return {'Hello, World!'}
-
-# @app.get('/about')
-# async def about() -> str:
-#     return  'An exceptional company'
-
 @app.get('/bands/{band_id}')
-async def band(band_id: int) -> BandWithID: 
+async def band(band_id: Annotated[int, Path(title="The band ID")]) -> BandWithID: 
     band = next((BandWithID(**b) for b in BANDS if b['id'] == band_id), None)
     if band is None:
         raise HTTPException(status_code=404, detail="Band not found")
