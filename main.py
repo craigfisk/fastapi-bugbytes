@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Path
+from fastapi import FastAPI, HTTPException, Path, Query
 from schemas import GenreURLChoices, BandBase, BandCreate, BandWithID
 from typing import Annotated
 # See https://github.com/tiangolo/full-stack-fastapi-postgresql/blob/master/app/schemas/user.py
@@ -16,8 +16,8 @@ BANDS = [
 
 @app.get('/bands')
 async def bands(
-    genre: GenreURLChoices | None = None, 
-    has_albums: bool = False
+    genre: GenreURLChoices | None = None,
+    q: Annotated[str | None, Query(max_length=10)] = None 
 ) -> list[BandWithID]:
     band_list = [BandWithID(**b) for b in BANDS]
 
@@ -26,8 +26,11 @@ async def bands(
             b for b in band_list if b.genre.value.lower() == genre.value
         ]
 
-    if has_albums:
-        band_list = [b for b in band_list if len(b.albums) > 0]      
+    if q:
+        band_list = [
+            b for b in band_list if q.lower() in b.name.lower()
+        ]
+
     return band_list
 
 @app.get('/bands/{band_id}')
