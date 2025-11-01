@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: FastAPI",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/main.py",
+      "console": "integratedTerminal",
+      "env": {
+        "VIRTUAL_ENV": "${workspaceFolder}/.venv-fastapi",
+        "PATH": "${workspaceFolder}/.venv-fastapi/bin:${env:PATH}"
+      }
+    }
+  ]
+}
+

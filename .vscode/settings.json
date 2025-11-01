@@ -1,0 +1,8 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv-fastapi/bin/python",
+  "python.terminal.activateEnvironment": true,
+  "terminal.integrated.env.linux": {
+    "VIRTUAL_ENV": "${workspaceFolder}/.venv-fastapi",
+    "PATH": "${workspaceFolder}/.venv-fastapi/bin:${env:PATH}"
+  }
+}
