@@ -54,23 +54,23 @@ BANDS = [
 #         b for b in BANDS if b['genre'].lower() == genre.value
 #     ]
 
-# @app.post('/bands')
-# async def create_band(
-#     band_data: BandCreate,
-#     session: Session = Depends(get_session)
-# ) -> Band:      
-#     band = Band(name=band_data.name, genre=band_data.genre)
-#     session.add(band)
+@app.post('/bands')
+async def create_band(
+    band_data: BandCreate,
+    session: Session = Depends(get_session)               
+) -> Band:
+    band = Band(name=band_data.name, genre=band_data.genre)
+    session.add(band)
 
-#     if band_data.albums:
-#         for album in band_data.albums:
-#             album_obj = Album(
-#                 title=album.title,
-#                 release_date=album.release_date,
-#                 band=band
-#             )
-#             session.add(album_obj)
+    if band_data.albums:
+        for album in band_data.albums:
+            album_obj = Album(
+                title=album_data.title,
+                release_date=album_data.release_date,
+                band=band
+            )
+            session.add(album)
 
-#     session.commit()
-#     session.refresh(band)
-#     return band
+    session.commit()
+    session.refresh(band)
+    return band
