@@ -4,7 +4,7 @@ from typing import Annotated
 from sqlmodel import Session
 # See https://github.com/tiangolo/full-stack-fastapi-postgresql/blob/master/app/schemas/user.py
 from contextlib import asynccontextmanager
-from db import init_db
+from db import init_db, get_session
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
