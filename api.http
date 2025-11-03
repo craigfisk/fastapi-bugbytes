@@ -3,7 +3,17 @@ Content-Type: application/json
 
 {
     "name": "Boards of Canada",
-    "genre": "ELECTRONIC"
+    "genre": "ELECTRONIC",
+    "albums:": [
+        {
+            "title": "Music Has the Right to Children",
+            "release_date": "1998-04-20"
+        },
+        {
+            "title": "Geogaddi",
+            "release_date": "2002-10-07"
+        }
+    ]   
 }
 
 ###

@@ -65,11 +65,9 @@ async def create_band(
     if band_data.albums:
         for album in band_data.albums:
             album_obj = Album(
-                title=album_data.title,
-                release_date=album_data.release_date,
-                band=band
+                title=album.title, release_date=album.release_date, band=band
             )
-            session.add(album)
+            session.add(album_obj)
 
     session.commit()
     session.refresh(band)

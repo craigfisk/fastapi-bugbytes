@@ -20,13 +20,12 @@ class GenreChoices(Enum):
 class AlbumBase(SQLModel): 
     title: str
     release_date: date
-    band_id: int = Field(foreign_key="band.id")
+    band_id: int | None = Field(foreign_key="band.id")
 
 class Album(AlbumBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
     band: "Band" = Relationship(back_populates="albums")
-    # band_id: int | None = Field(default=None, foreign_key="band.id")
-
+  
 class BandBase(SQLModel):
     name: str
     genre: GenreChoices
@@ -47,4 +46,4 @@ class BandCreate(BandBase):
 class Band(BandBase, table =True):
     id: int = Field(default=None, primary_key=True)
     albums: list[Album] = Relationship(back_populates="band")
-    
+
