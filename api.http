@@ -2,19 +2,15 @@ POST http://localhost:8000/bands/
 Content-Type: application/json
 
 {
-    "name": "Boards of Canada",
+    "name": "Whizzbang Music",
     "genre": "electronic",
     "albums:": [
         {
-            "title": "Tomorrow's Harvest",
+            "title": "Fruitcake bonanza",
             "release_date": "2013-01-01"
-        },
-        {
-            "title": "Geogaddi",
-            "release_date": "2002-10-07"
         }
     ]   
 }
 
 ###
-GET http://localhost:8000/bands
+GET http://localhost:8000/bands/22
