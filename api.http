@@ -3,11 +3,11 @@ Content-Type: application/json
 
 {
     "name": "Boards of Canada",
-    "genre": "ELECTRONIC",
+    "genre": "electronic",
     "albums:": [
         {
-            "title": "Music Has the Right to Children",
-            "release_date": "1998-04-20"
+            "title": "Tomorrow's Harvest",
+            "release_date": "2013-01-01"
         },
         {
             "title": "Geogaddi",
@@ -17,4 +17,4 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8000/bands?genre=electronic&has_albums=false
+GET http://localhost:8000/bands
