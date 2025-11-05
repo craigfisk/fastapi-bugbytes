@@ -13,14 +13,14 @@ from db import init_db, get_session
 
 app = FastAPI()
 
-# BANDS = [
-#     {'id': 1, 'name': 'The Kinks', 'genre': 'Rock'},
-#     {'id': 2, 'name': 'Aphex Twin', 'genre': 'Electronic'},
-#     {'id': 3, 'name': 'Black Sabbath', 'genre': 'Metal', 'albums': [
-#         {'title': 'Master of Reality', 'release_date': '1971-07-21'}
-#     ]},
-#     {'id': 4, 'name': 'Wu-Tang Clan', 'genre': 'Hip-Hop'},    
-# ]
+BANDS = [
+    {'id': 1, 'name': 'The Kinks', 'genre': 'Rock'},
+    {'id': 2, 'name': 'Aphex Twin', 'genre': 'Electronic'},
+    {'id': 3, 'name': 'Black Sabbath', 'genre': 'Metal', 'albums': [
+        {'title': 'Master of Reality', 'release_date': '1971-07-21'}
+    ]},
+    {'id': 4, 'name': 'Wu-Tang Clan', 'genre': 'Hip-Hop'},    
+]
 
 @app.get('/bands')
 async def bands(
