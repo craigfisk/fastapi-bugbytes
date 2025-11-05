@@ -1,0 +1,48 @@
+# --- Python Virtual Environment ---
+# Python environment files
+.venv-fastapi/
+.venv/
+venv/
+env/
+*/__pycache__/
+*.pyc
+# Local database file
+db.sqlite
+
+# --- IDE/Editor Specific Files ---
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# --- Database Files ---
+# Crucially, ignore your local SQLite database file!
+# Adjust 'database.db' or 'app.sqlite' to match your actual file name.
+database.db
+app.sqlite
+*.sqlite
+*.sqlite3
+
+# --- Build/Distribution Artifacts ---
+dist/
+build/
+*.egg-info/
+
+# --- Alembic/Migration Specifics ---
+# While Alembic version files (Python scripts) should be tracked, 
+# sometimes temporary files or local testing artifacts might accumulate.
+# However, usually, you DO NOT ignore the 'versions/' directory itself.
+# This is just an example if you create temporary test DBs.
+# test_*.db
+
+# --- Large Files / Data ---
+# If you use Git LFS, ignore the original large files first, 
+# then initialize LFS tracking.
+# *.bin
+# *.csv
+
+# --- Secrets and Credentials ---
+# Any files containing API keys, passwords, or credentials must be ignored.
+.env
+secrets.json

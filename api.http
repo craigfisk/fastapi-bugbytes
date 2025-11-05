@@ -2,7 +2,7 @@ POST http://localhost:8000/bands/
 Content-Type: application/json
 
 {
-    "name": "Whizzbang Music",
+    "name": "Super 3 Nothing",
     "genre": "electronic",
     "albums:": [
         {
