@@ -3,6 +3,7 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from sqlmodel import SQLModel
+from pathlib import Path
 from alembic import context
 from models import Band, Album  # ensure models are imported for migrations 
 
@@ -10,6 +11,8 @@ from models import Band, Album  # ensure models are imported for migrations
 # access to the values within the .ini file in use.
 config = context.config
 
+DB_PATH = str((Path().parent / 'db.sqlite').resolve())
+config.set_main_option('sqlalchemy.url', f'sqlite:///{DB_PATH}')
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 if config.config_file_name is not None:
@@ -19,7 +22,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = None
+target_metadata = SQLModel.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
